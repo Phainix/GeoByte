@@ -1,1 +1,4 @@
 co/phainix/geobyte/Application.class
+co/phainix/geobyte/enums/UserModelStatus.class
+co/phainix/geobyte/model/User.class
+co/phainix/geobyte/repository/UserRepository.class
