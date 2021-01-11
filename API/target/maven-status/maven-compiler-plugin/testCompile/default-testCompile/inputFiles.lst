@@ -1,1 +1,3 @@
-/Users/phainix/Development/GeoByte/API/src/test/java/co/phainix/geobyte/test/UserRepositoryUnitTest.java
+/Users/phainix/Development/GeoByte/API/src/test/java/co/phainix/geobyte/test/ApplicationTest.java
+/Users/phainix/Development/GeoByte/API/src/test/java/co/phainix/geobyte/test/user/UserServiceImplTest.java
+/Users/phainix/Development/GeoByte/API/src/test/java/co/phainix/geobyte/test/user/UserRepositoryTest.java

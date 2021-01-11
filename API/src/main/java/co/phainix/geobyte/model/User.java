@@ -1,7 +1,5 @@
 package co.phainix.geobyte.model;
 
-import co.phainix.geobyte.enums.UserModelStatus;
-
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -25,7 +23,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserModelStatus status;
 
-    @Column(name = "date_created")
+    @Column(name = "date_created", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP") //  ON UPDATE CURRENT_DATE
     private java.sql.Date date_created;
 
     public User() {

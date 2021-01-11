@@ -1,1 +1,4 @@
-co/phainix/geobyte/test/UserRepositoryUnitTest.class
+co/phainix/geobyte/test/user/UserServiceImplTest.class
+co/phainix/geobyte/test/user/UserRepositoryTest.class
+co/phainix/geobyte/test/user/UserServiceImplTest$UserServiceImplTestContextConfiguration.class
+co/phainix/geobyte/test/ApplicationTest.class
