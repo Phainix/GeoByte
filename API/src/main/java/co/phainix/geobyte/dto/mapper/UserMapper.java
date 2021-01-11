@@ -13,7 +13,7 @@ public class UserMapper {
         userDto.setEmail(user.getEmail());
         userDto.setName(user.getName());
         userDto.setPassword(user.getPassword());
-        userDto.setStatus(user.getStatus());
+        userDto.setGeoByteStatus(user.getGeoByteStatus());
         return userDto;
     }
 
@@ -22,7 +22,7 @@ public class UserMapper {
         userResponseDto.setId(user.getId());
         userResponseDto.setEmail(user.getEmail());
         userResponseDto.setName(user.getName());
-        userResponseDto.setStatus(user.getStatus());
+        userResponseDto.setGeoByteStatus(user.getGeoByteStatus());
         userResponseDto.setDate_created(user.getDate_created());
         return userResponseDto;
     }

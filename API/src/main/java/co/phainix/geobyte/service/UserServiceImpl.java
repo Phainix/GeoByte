@@ -6,7 +6,7 @@ import co.phainix.geobyte.dto.response.UserResponseDto;
 import co.phainix.geobyte.exception.EntityType;
 import co.phainix.geobyte.exception.ExceptionType;
 import co.phainix.geobyte.exception.GeoByteException;
-import co.phainix.geobyte.model.UserModelStatus;
+import co.phainix.geobyte.model.GeoByteStatus;
 import co.phainix.geobyte.model.User;
 import co.phainix.geobyte.repository.UserRepository;
 import org.modelmapper.ModelMapper;
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
             user.setEmail(userDto.getEmail());
             user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
             user.setName(userDto.getName());
-            user.setStatus(UserModelStatus.ACTIVE);
+            user.setGeoByteStatus(GeoByteStatus.ACTIVE);
 
             User savedUser = userRepository.save(user);
             if(savedUser == null) {

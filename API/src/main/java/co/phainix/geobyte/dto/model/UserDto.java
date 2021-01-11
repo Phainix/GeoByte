@@ -1,6 +1,6 @@
 package co.phainix.geobyte.dto.model;
 
-import co.phainix.geobyte.model.UserModelStatus;
+import co.phainix.geobyte.model.GeoByteStatus;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -15,7 +15,7 @@ public class UserDto {
     private String password;
     private String name;
     private Date date_created;
-    private UserModelStatus status;
+    private GeoByteStatus geoByteStatus;
 
     public UserDto() {
     }
@@ -44,12 +44,12 @@ public class UserDto {
         this.name = name;
     }
 
-    public UserModelStatus getStatus() {
-        return status;
+    public GeoByteStatus getGeoByteStatus() {
+        return geoByteStatus;
     }
 
-    public void setStatus(UserModelStatus status) {
-        this.status = status;
+    public void setGeoByteStatus(GeoByteStatus geoByteStatus) {
+        this.geoByteStatus = geoByteStatus;
     }
 
     public Date getDate_created() {
@@ -66,7 +66,7 @@ public class UserDto {
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
+                ", status='" + geoByteStatus + '\'' +
                 ", date_created='" + date_created + '\'' +
                 '}';
     }

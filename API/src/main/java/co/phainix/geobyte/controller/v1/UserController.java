@@ -5,7 +5,7 @@ import co.phainix.geobyte.controller.v1.request.UserSignupRequest;
 import co.phainix.geobyte.dto.model.UserDto;
 import co.phainix.geobyte.dto.response.Response;
 import co.phainix.geobyte.dto.response.UserResponseDto;
-import co.phainix.geobyte.model.UserModelStatus;
+import co.phainix.geobyte.model.GeoByteStatus;
 import co.phainix.geobyte.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,7 @@ public class UserController {
         userDto.setEmail(userSignupRequest.getEmail());
         userDto.setPassword(userSignupRequest.getPassword());
         userDto.setName(userSignupRequest.getName());
-        userDto.setStatus(UserModelStatus.ACTIVE);
+        userDto.setGeoByteStatus(GeoByteStatus.ACTIVE);
 
         return userService.signUp(userDto);
     }

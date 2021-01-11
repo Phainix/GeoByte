@@ -1,36 +1,26 @@
 package co.phainix.geobyte.test.user;
 
 import co.phainix.geobyte.dto.mapper.UserMapper;
-import co.phainix.geobyte.dto.model.UserDto;
 import co.phainix.geobyte.dto.response.UserResponseDto;
 import co.phainix.geobyte.exception.EntityType;
 import co.phainix.geobyte.exception.ExceptionType;
-import co.phainix.geobyte.exception.GeoByteException;
 import co.phainix.geobyte.model.User;
-import co.phainix.geobyte.model.UserModelStatus;
+import co.phainix.geobyte.model.GeoByteStatus;
 import co.phainix.geobyte.repository.UserRepository;
 import co.phainix.geobyte.service.UserService;
 import co.phainix.geobyte.service.UserServiceImpl;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import static co.phainix.geobyte.exception.GeoByteException.getMessageTemplate;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,7 +56,7 @@ public class UserServiceImplTest {
 
     @BeforeEach
     public void setUp() {
-        User user = new User("Lorem Ipsum", "lorem.ipsum@gmail.com", UserModelStatus.ACTIVE);
+        User user = new User("Lorem Ipsum", "lorem.ipsum@gmail.com", GeoByteStatus.ACTIVE);
         user.setPassword(bCryptPasswordEncoder.encode("lorem.ipsum$"));
 
         Mockito.when(userRepository.findByEmail(user.getEmail()))
@@ -85,7 +75,7 @@ public class UserServiceImplTest {
     @Test
     public void whenEmailExists_thenUserCanNotSignUp() {
 
-        User user = new User("Lorem Ipsum", "lorem.ipsum@gmail.com", UserModelStatus.ACTIVE);
+        User user = new User("Lorem Ipsum", "lorem.ipsum@gmail.com", GeoByteStatus.ACTIVE);
         user.setPassword("lorem.ipsum$");
 
         try {

@@ -2,7 +2,7 @@ package co.phainix.geobyte.test.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import co.phainix.geobyte.model.UserModelStatus;
+import co.phainix.geobyte.model.GeoByteStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,22 +34,22 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldStoreAUser() {
-        User user = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", UserModelStatus.ACTIVE));
+        User user = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", GeoByteStatus.ACTIVE));
 
         assertThat(user).hasFieldOrPropertyWithValue("name", "Lorem Ipsum");
         assertThat(user).hasFieldOrPropertyWithValue("email", "lorem.ipsum@gmail.com");
-        assertThat(user).hasFieldOrPropertyWithValue("status", UserModelStatus.ACTIVE);
+        assertThat(user).hasFieldOrPropertyWithValue("status", GeoByteStatus.ACTIVE);
     }
 
     @Test
     public void shouldFindAllUsers() {
-        User user1 = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", UserModelStatus.ACTIVE));
+        User user1 = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", GeoByteStatus.ACTIVE));
         entityManager.persist(user1);
 
-        User user2 = repository.save(new User("Lorem Ipsum2", "lorem.ipsum@gmail.com2", UserModelStatus.ACTIVE));
+        User user2 = repository.save(new User("Lorem Ipsum2", "lorem.ipsum@gmail.com2", GeoByteStatus.ACTIVE));
         entityManager.persist(user2);
 
-        User user3 = repository.save(new User("Lorem Ipsum3", "lorem.ipsum@gmail.com3", UserModelStatus.ACTIVE));
+        User user3 = repository.save(new User("Lorem Ipsum3", "lorem.ipsum@gmail.com3", GeoByteStatus.ACTIVE));
         entityManager.persist(user3);
 
         Iterable<User> users = repository.findAll();
@@ -59,10 +59,10 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldFindUserById() {
-        User user1 = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", UserModelStatus.ACTIVE));
+        User user1 = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", GeoByteStatus.ACTIVE));
         entityManager.persist(user1);
 
-        User user2 = repository.save(new User("Lorem Ipsum2", "lorem.ipsum@gmail.com2", UserModelStatus.ACTIVE));
+        User user2 = repository.save(new User("Lorem Ipsum2", "lorem.ipsum@gmail.com2", GeoByteStatus.ACTIVE));
         entityManager.persist(user2);
 
         User foundUser = repository.findById(user2.getId()).get();
@@ -72,13 +72,13 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldUpdateUserById() {
-        User user1 = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", UserModelStatus.ACTIVE));
+        User user1 = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", GeoByteStatus.ACTIVE));
         entityManager.persist(user1);
 
-        User user2 = repository.save(new User("Lorem Ipsum2", "lorem.ipsum@gmail.com2", UserModelStatus.ACTIVE));
+        User user2 = repository.save(new User("Lorem Ipsum2", "lorem.ipsum@gmail.com2", GeoByteStatus.ACTIVE));
         entityManager.persist(user2);
 
-        User updatedUser = new User("Lorem Ipsum4", "lorem.ipsum@gmail.com4", UserModelStatus.ACTIVE);
+        User updatedUser = new User("Lorem Ipsum4", "lorem.ipsum@gmail.com4", GeoByteStatus.ACTIVE);
 
         User user = repository.findById(user2.getId()).get();
         user.setName(updatedUser.getName());
@@ -96,13 +96,13 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldDeleteUserById() {
-        User user1 = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", UserModelStatus.ACTIVE));
+        User user1 = repository.save(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", GeoByteStatus.ACTIVE));
         entityManager.persist(user1);
 
-        User user2 = repository.save(new User("Lorem Ipsum2", "lorem.ipsum@gmail.com2", UserModelStatus.ACTIVE));
+        User user2 = repository.save(new User("Lorem Ipsum2", "lorem.ipsum@gmail.com2", GeoByteStatus.ACTIVE));
         entityManager.persist(user2);
 
-        User user3 = repository.save(new User("Lorem Ipsum3", "lorem.ipsum@gmail.com3", UserModelStatus.ACTIVE));
+        User user3 = repository.save(new User("Lorem Ipsum3", "lorem.ipsum@gmail.com3", GeoByteStatus.ACTIVE));
         entityManager.persist(user3);
 
         repository.deleteById(user2.getId());
@@ -114,8 +114,8 @@ public class UserRepositoryTest {
 
     @Test
     public void shouldDeleteAllUsers() {
-        entityManager.persist(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", UserModelStatus.ACTIVE));
-        entityManager.persist(new User("Lorem Ipsum", "lorem.ipsum@gmail.com2", UserModelStatus.ACTIVE));
+        entityManager.persist(new User("Lorem Ipsum", "lorem.ipsum@gmail.com", GeoByteStatus.ACTIVE));
+        entityManager.persist(new User("Lorem Ipsum", "lorem.ipsum@gmail.com2", GeoByteStatus.ACTIVE));
 
         repository.deleteAll();
 

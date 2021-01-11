@@ -21,18 +21,18 @@ public class User {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private UserModelStatus status;
+    private GeoByteStatus geoByteStatus;
 
-    @Column(name = "date_created", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP") //  ON UPDATE CURRENT_DATE
+    @Column(name = "date_created", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private java.sql.Date date_created;
 
     public User() {
     }
 
-    public User(String name, String email, UserModelStatus status) {
+    public User(String name, String email, GeoByteStatus geoByteStatus) {
         this.name = name;
         this.email = email;
-        this.status = status;
+        this.geoByteStatus = geoByteStatus;
     }
 
     public long getId() {
@@ -67,12 +67,12 @@ public class User {
         this.password = password;
     }
 
-    public UserModelStatus getStatus() {
-        return status;
+    public GeoByteStatus getGeoByteStatus() {
+        return geoByteStatus;
     }
 
-    public void setStatus(UserModelStatus status) {
-        this.status = status;
+    public void setGeoByteStatus(GeoByteStatus geoByteStatus) {
+        this.geoByteStatus = geoByteStatus;
     }
 
     public Date getDate_created() {
@@ -90,7 +90,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", status=" + status +
+                ", status=" + geoByteStatus +
                 ", date_created=" + date_created +
                 '}';
     }
