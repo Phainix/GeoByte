@@ -47,4 +47,35 @@ public class LocationController {
 
         return locationService.add(locationDto);
     }
+
+    @RequestMapping("/remove")
+    public Response remove(@RequestParam(value = "location_id") long location_id) {
+        Response resp =  Response.ok();
+        resp.setData(removeLocation(location_id));
+        return resp;
+    }
+
+    private boolean removeLocation(long location_id) {
+        return locationService.remove(location_id);
+    }
+
+    @PostMapping("/update")
+    public Response update(@RequestParam(value = "location_id") long location_id, @RequestBody @Valid LocationRequest locationRequest) {
+        Response resp =  Response.ok();
+        resp.setData(updateLocation(location_id, locationRequest));
+        return resp;
+    }
+
+    private LocationResponseDto updateLocation(long location_id, LocationRequest locationRequest) {
+        LocationDto locationDto = new LocationDto();
+        locationDto.setCoordinate_y(locationRequest.getCoordinate_y());
+        locationDto.setCoordinate_x(locationRequest.getCoordinate_x());
+        locationDto.setClearing_cost(locationRequest.getClearing_cost());
+        locationDto.setName(locationRequest.getName());
+        locationDto.setGeoByteStatus(GeoByteStatus.ACTIVE);
+        locationDto.setId(location_id);
+
+        return locationService.update(locationDto);
+    }
+
 }

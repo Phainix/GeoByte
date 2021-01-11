@@ -73,10 +73,11 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public boolean remove(long id) {
+        get(id);
         locationRepository.deleteById(id);
 
-        Optional<Location> location = Optional.ofNullable(locationRepository.getOne(id));
-        return !location.isPresent();
+        Optional<Location> location = locationRepository.findById(id);
+        return location.isPresent() == false;
     }
 
     @Override
