@@ -3,11 +3,13 @@ co/phainix/geobyte/dto/model/UserDto.class
 co/phainix/geobyte/model/Location.class
 co/phainix/geobyte/service/LocationServiceImpl.class
 co/phainix/geobyte/dto/mapper/UserMapper.class
+co/phainix/geobyte/model/OptimalRoutePath.class
 co/phainix/geobyte/config/PropertiesConfig.class
 co/phainix/geobyte/dto/response/Status.class
 co/phainix/geobyte/Application.class
 co/phainix/geobyte/exception/EntityType.class
 co/phainix/geobyte/repository/UserRepository.class
+co/phainix/geobyte/util/OptimalRoute$1.class
 co/phainix/geobyte/service/LocationService.class
 co/phainix/geobyte/repository/LocationRepository.class
 co/phainix/geobyte/model/User.class
@@ -19,10 +21,12 @@ co/phainix/geobyte/controller/v1/UserController.class
 co/phainix/geobyte/exception/GeoByteException.class
 co/phainix/geobyte/exception/GeoByteException$EntityNotFoundException.class
 co/phainix/geobyte/exception/CustomizedResponseEntityExceptionHandler.class
+co/phainix/geobyte/util/OptimalRoute.class
 co/phainix/geobyte/exception/GeoByteException$DuplicateEntityException.class
 co/phainix/geobyte/dto/mapper/LocationMapper.class
 co/phainix/geobyte/dto/response/UserResponseDto.class
 co/phainix/geobyte/repository/LocationRepositoryCustom.class
+co/phainix/geobyte/model/OptimalRouteLocation.class
 co/phainix/geobyte/repository/LocationRepositoryImpl.class
 co/phainix/geobyte/dto/model/LocationDto.class
 co/phainix/geobyte/dto/response/ResponseError.class

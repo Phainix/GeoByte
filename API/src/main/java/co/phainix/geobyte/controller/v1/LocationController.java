@@ -5,6 +5,7 @@ import co.phainix.geobyte.dto.model.LocationDto;
 import co.phainix.geobyte.dto.response.LocationResponseDto;
 import co.phainix.geobyte.dto.response.Response;
 import co.phainix.geobyte.model.GeoByteStatus;
+import co.phainix.geobyte.model.OptimalRoutePath;
 import co.phainix.geobyte.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -76,6 +77,17 @@ public class LocationController {
         locationDto.setId(location_id);
 
         return locationService.update(locationDto);
+    }
+
+    @RequestMapping("/optimal/route")
+    public Response route(@RequestParam(value = "origin_location_id") long origin_location_id, @RequestParam(value = "destination_location_id") long destination_location_id) {
+        Response resp =  Response.ok();
+        resp.setData(getOptimalRoute(origin_location_id, destination_location_id));
+        return resp;
+    }
+
+    private List<OptimalRoutePath> getOptimalRoute(long origin_location_id, long destination_location_id) {
+        return locationService.getOptimalRoute(origin_location_id, destination_location_id);
     }
 
 }

@@ -8,17 +8,19 @@ import co.phainix.geobyte.exception.ExceptionType;
 import co.phainix.geobyte.exception.GeoByteException;
 import co.phainix.geobyte.model.GeoByteStatus;
 import co.phainix.geobyte.model.Location;
+import co.phainix.geobyte.model.OptimalRouteLocation;
+import co.phainix.geobyte.model.OptimalRoutePath;
 import co.phainix.geobyte.repository.LocationRepository;
+import co.phainix.geobyte.util.OptimalRoute;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static co.phainix.geobyte.exception.EntityType.LOCATION;
+import static co.phainix.geobyte.exception.EntityType.ROUTE;
 import static co.phainix.geobyte.exception.ExceptionType.*;
 
 @Service
@@ -93,6 +95,36 @@ public class LocationServiceImpl implements LocationService {
             return LocationMapper.toLocationResponseDto(locationRepository.save(locationModel));
         }
         throw exception(LOCATION, ENTITY_NOT_FOUND);
+    }
+
+    @Override
+    public List<OptimalRoutePath> getOptimalRoute(long origin_location_id, long destination_location_id) {
+        Map<Integer, OptimalRouteLocation> optimalRouteLocationList = new HashMap<>();
+        List<Location> locations = locationRepository.findAll();
+
+        if(locations.size() < 3)
+            throw exception(ROUTE, ENTITY_EXCEPTION);
+
+        int count = 0;
+        for (Location location : locations) {
+            optimalRouteLocationList.put(count++, new OptimalRouteLocation(location.getCoordinate_x(), location.getCoordinate_y(), location.getClearing_cost(), (int) location.getId()));
+        }
+
+        System.out.println(optimalRouteLocationList.entrySet().toString());
+        System.out.println(origin_location_id + " " + destination_location_id);
+
+        Optional<Location> origin = locationRepository.findById(origin_location_id);
+        Optional<Location> destination = locationRepository.findById(destination_location_id);
+
+        if((origin.isPresent() && destination.isPresent()) == false)
+            throw exception(LOCATION, ENTITY_NOT_FOUND);
+
+        OptimalRoute optimalRoute = new OptimalRoute(optimalRouteLocationList, (int) origin_location_id, (int) destination_location_id);
+
+        List<OptimalRoutePath> optimalRoutePaths = optimalRoute.getOptimisedPath();
+        System.out.println("Optimal route is " + optimalRoutePaths.get(0).getPath());
+
+        return optimalRoutePaths;
     }
 
     private RuntimeException exception(EntityType entityType, ExceptionType exceptionType, String... args) {
