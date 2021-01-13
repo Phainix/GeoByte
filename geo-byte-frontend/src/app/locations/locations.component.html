@@ -24,10 +24,10 @@
                     <tbody>
                         <tr *ngFor="let location of locations; index as i;">
                             <th scope="row">{{ i + 1 }}</th>
-                            <td>{{ location.name }}</td>
-                            <td>{{ location.coordinate_x }}</td>
-                            <td>{{ location.coordinate_y }}</td>
-                            <td>${{ location.clearing_cost }}</td>
+                            <td>{{ location?.name }}</td>
+                            <td>{{ location?.coordinate_x }}</td>
+                            <td>{{ location?.coordinate_y }}</td>
+                            <td>${{ location?.clearing_cost }}</td>
                             <td>
                                 <button title="Update Location" class="btn btn-success text-white py-1" type="button"
                                     data-toggle="modal" data-target="#updateLocationModal" (click)="update(location)"><img class=""

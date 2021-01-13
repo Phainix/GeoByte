@@ -14,17 +14,17 @@
                             <label for="">Origin</label>
                             <select name="" id="" class="form-control" formControlName="origin">
                                 <option value="">Select Location</option>
-                                <option *ngFor="let location of locations;" value="{{ location.id }}">{{ location.name }}</option>
+                                <option *ngFor="let location of locations;" value="{{ location?.id }}">{{ location?.name }}</option>
                             </select>
-                            <small *ngIf="addForm?.controls?.origin?.touched && addForm?.controls?.origin?.errors" class="help-block text-danger">Please select an origin location</small>
+                            <small *ngIf="routeForm?.controls?.origin?.touched && routeForm?.controls?.origin?.errors" class="help-block text-danger">Please select an origin location</small>
                         </div>
                         <div class="col-4">
                             <label for="">Destination</label>
                             <select name="" id="" class="form-control" formControlName="destination">
                                 <option value="">Select Location</option>
-                                <option *ngFor="let location of locations;" value="{{ location.id }}">{{ location.name }}</option>
+                                <option *ngFor="let location of locations;" value="{{ location?.id }}">{{ location?.name }}</option>
                             </select>
-                            <small *ngIf="addForm?.controls?.destination?.touched && addForm?.controls?.destination?.errors" class="help-block text-danger">Please select an origin location</small>
+                            <small *ngIf="routeForm?.controls?.destination?.touched && routeForm?.controls?.destination?.errors" class="help-block text-danger">Please select an origin location</small>
                         </div>
                         <div class="col-4">
                             <label for=""></label>
