@@ -18,6 +18,7 @@ co/phainix/geobyte/service/UserServiceImpl.class
 co/phainix/geobyte/config/GeoByteConfiguration.class
 co/phainix/geobyte/service/UserService.class
 co/phainix/geobyte/controller/v1/UserController.class
+co/phainix/geobyte/config/WebConfig.class
 co/phainix/geobyte/exception/GeoByteException.class
 co/phainix/geobyte/exception/GeoByteException$EntityNotFoundException.class
 co/phainix/geobyte/exception/CustomizedResponseEntityExceptionHandler.class

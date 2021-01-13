@@ -66,17 +66,20 @@
                 <div class="card hover-top-shadow hover-top-shadow-lg border-0 card-form">
                     <img class="card-img-top card-img-curve" src="assets/img/map.svg" alt="" />
                     <div class="card-body p-4 pt-5">
-                        <form>
+                        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
                             <div class="mb-4">
-                                <input class="form-control" id="cardName" type="text" placeholder="Name" />
+                                <input class="form-control" id="cardName" type="text" placeholder="Name" formControlName="name"/>
+                                <small *ngIf="signUpForm?.controls?.name?.touched && signUpForm?.controls?.name?.errors?.required" class="help-block text-danger">Please enter your name</small>
                             </div>
                             <div class="mb-4">
-                                <input class="form-control" id="cardEmail" type="email" placeholder="Email" />
+                                <input class="form-control" id="cardEmail" type="email" placeholder="Email" formControlName="email"/>
+                                <small *ngIf="signUpForm?.controls?.email?.touched && signUpForm?.controls?.email?.errors" class="help-block text-danger">Please enter a valid email</small>
                             </div>
                             <div class="mb-4">
-                                <input class="form-control" id="cardPassword" type="password" placeholder="Password" />
+                                <input class="form-control" id="cardPassword" type="password" placeholder="Password" formControlName="password"/>
+                                <small *ngIf="signUpForm?.controls?.password?.touched && signUpForm?.controls?.password?.errors" class="help-block text-danger">Please a password not less than 5 characters</small>
                             </div>
-                            <button class="btn btn-block btn-success text-white" type="submit">Sign Up</button>
+                            <button class="btn btn-block btn-success text-white" type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
                             <p class="text-center mt-3">Have an account? <a class="btn btn-link"
                                 [routerLink]="['/sign-in']">Sign In</a></p>
                         </form>

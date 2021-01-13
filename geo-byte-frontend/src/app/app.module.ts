@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { routes } from './app.routes';
+import { AppService } from './app.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +14,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LocationsComponent } from './locations/locations.component';
 import { RouteComponent } from './route/route.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
@@ -28,9 +33,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
         AppRoutingModule,
         RouterModule.forRoot(routes,
             { useHash: false }
-        )
+        ),
+        ReactiveFormsModule,
+        HttpClientModule
     ],
-    providers: [],
+    providers: [
+        AppService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
