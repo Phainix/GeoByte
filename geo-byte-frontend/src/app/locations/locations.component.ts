@@ -27,6 +27,12 @@ export class LocationsComponent implements OnInit {
         clearing_cost: ['', [Validators.required, Validators.min(25), Validators.max(100),  Validators.pattern('\\d+')]],
     });
 
+    addForm = this.fb.group({
+        name: ['', Validators.required],
+        coordinate_x: ['', [Validators.required, Validators.min(0), Validators.max(40),  Validators.pattern('\\d+')]],
+        coordinate_y: ['', [Validators.required, Validators.min(0), Validators.max(40),  Validators.pattern('\\d+')]],
+        clearing_cost: ['', [Validators.required, Validators.min(25), Validators.max(100),  Validators.pattern('\\d+')]],
+    });
     
 
     constructor(private app: AppService, private fb: FormBuilder, public locationsService: LocationsService, private router: Router) { }
@@ -95,6 +101,23 @@ export class LocationsComponent implements OnInit {
             (err : any) => {
                 this.app.toggleLoader(false);
                 this.app.error("Location could not be updated");
+            }
+        );
+    }
+
+    onAdd(): void {
+        this.app.toggleLoader(true);
+        this.locationsService.add(this.addForm.value)
+        .subscribe(
+            (res : any) => {
+                if(res.success && res.status == AppConstants.OK) {
+                    this.app.notify("Location added successfully");
+                    this.getAll();
+                }
+            },
+            (err : any) => {
+                this.app.toggleLoader(false);
+                this.app.error("Location could not be added");
             }
         );
     }

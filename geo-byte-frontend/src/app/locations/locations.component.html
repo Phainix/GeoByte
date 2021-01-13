@@ -99,31 +99,39 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addLocationModalLabel">Add a location</h5>
+                <h5 class="modal-title" id="addLocationModalLabel">Add location</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body bg-light">
-                <form>
+                <form [formGroup]="addForm" (ngSubmit)="onAdd()">
                     <div class="mb-4">
-                        <input class="form-control" id="cardName" type="text" placeholder="Name" />
+                        <label for="">Name</label>
+                        <input class="form-control" id="cardName" type="text" placeholder="Name" value="" formControlName="name"/>
+                        <small *ngIf="addForm?.controls?.name?.touched && addForm?.controls?.name?.errors" class="help-block text-danger">Please enter location name</small>
                     </div>
                     <div class="mb-4 d-flex row">
                         <div class="col-6">
-                            <input class="form-control" id="cardEmail" type="email" placeholder="Coordinate X" />
+                            <label for="">Coordinate X <small>(Min: 0, Max: 40)</small></label>
+                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate x" value="" formControlName="coordinate_x"/>
+                            <small *ngIf="addForm?.controls?.coordinate_x?.touched && addForm?.controls?.coordinate_x?.errors" class="help-block text-danger">Please enter a valid coordinate</small>
                         </div>
                         <div class="col-6">
-                            <input class="form-control" id="cardEmail" type="email" placeholder="Coordinate X" />
+                            <label for="">Coordinate Y <small>(Min: 0, Max: 40)</small></label>
+                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate y" value="" formControlName="coordinate_y"/>
+                            <small *ngIf="addForm?.controls?.coordinate_y?.touched && addForm?.controls?.coordinate_y?.errors" class="help-block text-danger">Please enter a valid coordinate</small>
                         </div>
                     </div>
                     <div class="mb-4">
-                        <input class="form-control" id="cardPassword" type="number" placeholder="Clearing Cost" />
+                        <label for="">Clearing Cost <small>(Min: $25, Max: $100)</small></label>
+                        <input class="form-control" id="cardName" type="number" placeholder="Clearing Cost" value="" formControlName="clearing_cost"/>
+                        <small *ngIf="addForm?.controls?.clearing_cost?.touched && addForm?.controls?.clearing_cost?.errors" class="help-block text-danger">Please enter a valid clearing cost</small>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!addForm.valid" (click)="onAdd()">Save</button>
             </div>
         </div>
     </div>
