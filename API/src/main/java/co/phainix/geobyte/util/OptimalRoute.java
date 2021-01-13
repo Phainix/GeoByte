@@ -2,6 +2,7 @@ package co.phainix.geobyte.util;
 
 import co.phainix.geobyte.model.OptimalRouteLocation;
 import co.phainix.geobyte.model.OptimalRoutePath;
+import co.phainix.geobyte.model.OptimalRouteResponsePath;
 
 import java.util.*;
 
@@ -111,9 +112,10 @@ public class OptimalRoute {
             double clearingCost = 0.0;
 
             int[] path = entry.getValue();
-            int[] paths = new int[entry.getValue().length + 2];
+            OptimalRouteResponsePath[] paths = new OptimalRouteResponsePath[entry.getValue().length + 2];
 
-            paths[0] = origin;
+            // paths[0] = locations.get(indexLocationMap.get(origin));
+             paths[0] = new OptimalRouteResponsePath(0, 0, origin);
 
             int originIndex = indexLocationMap.get(origin);
             OptimalRouteLocation originLocation = locations.get(originIndex);
@@ -126,7 +128,7 @@ public class OptimalRoute {
 
             // Loop through each generated path
             for(int i = 0; i < path.length; i++) {
-                paths[i + 1] = path[i];
+
                 int currentLocationIndex = indexLocationMap.get(path[i]);
                 OptimalRouteLocation currentLocation = locations.get(currentLocationIndex);
 
@@ -135,20 +137,27 @@ public class OptimalRoute {
                 if(i == 0) { // This is the first location, calculate distance in km from origin to here
                     km += distances[originIndex][currentLocationIndex];
                     clearingCost += currentLocation.getClearing_cost();
+
+                    paths[i + 1] = new OptimalRouteResponsePath(km, clearingCost, path[i]);
                 } else { // This is a middle location
                     int prevLocationIndex = indexLocationMap.get(path[i-1]);
                     OptimalRouteLocation prevLocation = locations.get(prevLocationIndex);
 
                     km += distances[prevLocationIndex][currentLocationIndex];
                     clearingCost += currentLocation.getClearing_cost();
+
+                    paths[i + 1] = new OptimalRouteResponsePath(km, clearingCost, path[i]);
                 }
 
                 if(i == path.length - 1) { // This is the last location, calculate distance in km from here to destination
                     km += distances[currentLocationIndex][destinationIndex];
                 }
+                // paths[i + 1] = locations.get(indexLocationMap.get(path[i]));
+                // paths[i + 1] = new OptimalRouteResponsePath(km, clearingCost);
             }
 
-            paths[entry.getValue().length + 1] = destination;
+            // paths[entry.getValue().length + 1] = locations.get(indexLocationMap.get(destination));
+             paths[entry.getValue().length + 1] = new OptimalRouteResponsePath(km, clearingCost, destination);
 
             km = Math.round(km * 100) / 100.00;
 

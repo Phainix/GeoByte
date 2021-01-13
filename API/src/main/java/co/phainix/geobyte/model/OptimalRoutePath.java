@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class OptimalRoutePath {
 
     public int[] stops;
-    public int[] paths;
+    public OptimalRouteResponsePath[] paths;
     public String path;
 
     public double km;
@@ -22,7 +22,7 @@ public class OptimalRoutePath {
     public boolean isOptimal;
     public boolean isWorst;
 
-    public OptimalRoutePath(int[] stops, String path, double km, double kmCost, double clearingCost, double totalCost, int[] paths) {
+    public OptimalRoutePath(int[] stops, String path, double km, double kmCost, double clearingCost, double totalCost, OptimalRouteResponsePath[] paths) {
         this.stops = stops;
         this.path = path;
         this.km = km;
@@ -122,11 +122,11 @@ public class OptimalRoutePath {
         this.totalComparison = totalComparison;
     }
 
-    public int[] getPaths() {
+    public OptimalRouteResponsePath[] getPaths() {
         return paths;
     }
 
-    public void setPaths(int[] paths) {
+    public void setPaths(OptimalRouteResponsePath[] paths) {
         this.paths = paths;
     }
 

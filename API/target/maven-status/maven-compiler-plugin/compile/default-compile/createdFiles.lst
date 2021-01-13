@@ -26,6 +26,7 @@ co/phainix/geobyte/util/OptimalRoute.class
 co/phainix/geobyte/exception/GeoByteException$DuplicateEntityException.class
 co/phainix/geobyte/dto/mapper/LocationMapper.class
 co/phainix/geobyte/dto/response/UserResponseDto.class
+co/phainix/geobyte/model/OptimalRouteResponsePath.class
 co/phainix/geobyte/repository/LocationRepositoryCustom.class
 co/phainix/geobyte/model/OptimalRouteLocation.class
 co/phainix/geobyte/repository/LocationRepositoryImpl.class

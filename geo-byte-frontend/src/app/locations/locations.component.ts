@@ -120,6 +120,7 @@ export class LocationsComponent implements OnInit {
                 this.app.error("Location could not be added");
             }
         );
+        this.addForm.reset();
     }
 
 }

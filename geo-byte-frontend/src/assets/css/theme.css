@@ -14112,3 +14112,9 @@ a.text-500:hover {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+.blur {
+  filter: blur(7px);
+}
+.worstRoute {
+  transform: scale(.7);
+}

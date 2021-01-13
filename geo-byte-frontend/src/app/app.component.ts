@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from './app.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -10,10 +10,14 @@ import { catchError } from 'rxjs/operators';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'geo-byte-frontend';
 
     constructor(private app: AppService, private http: HttpClient, private router: Router) {
+        
+    }
+
+    ngOnInit(): void {
         this.app.authenticate(undefined, undefined);
     }
 
