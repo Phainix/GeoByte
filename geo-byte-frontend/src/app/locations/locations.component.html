@@ -22,79 +22,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Abeokuta</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>$26</td>
+                        <tr *ngFor="let location of locations; index as i;">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>{{ location.name }}</td>
+                            <td>{{ location.coordinate_x }}</td>
+                            <td>{{ location.coordinate_y }}</td>
+                            <td>${{ location.clearing_cost }}</td>
                             <td>
                                 <button title="Update Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#updateLocationModal"><img class=""
+                                    data-toggle="modal" data-target="#updateLocationModal" (click)="update(location)"><img class=""
                                         src="assets/img/pencil.svg" alt="" /></button>
                                 <button title="Remove Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#deleteLocationModal"><img class=""
-                                        src="assets/img/trash.svg" alt="" /></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Abeokuta</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>$26</td>
-                            <td>
-                                <button title="Update Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#updateLocationModal"><img class=""
-                                        src="assets/img/pencil.svg" alt="" /></button>
-                                <button title="Remove Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#deleteLocationModal"><img class=""
-                                        src="assets/img/trash.svg" alt="" /></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Abeokuta</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>$26</td>
-                            <td>
-                                <button title="Update Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#updateLocationModal"><img class=""
-                                        src="assets/img/pencil.svg" alt="" /></button>
-                                <button title="Remove Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#deleteLocationModal"><img class=""
-                                        src="assets/img/trash.svg" alt="" /></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Abeokuta</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>$26</td>
-                            <td>
-                                <button title="Update Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#updateLocationModal"><img class=""
-                                        src="assets/img/pencil.svg" alt="" /></button>
-                                <button title="Remove Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#deleteLocationModal"><img class=""
-                                        src="assets/img/trash.svg" alt="" /></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Abeokuta</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>$26</td>
-                            <td>
-                                <button title="Update Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#updateLocationModal"><img class=""
-                                        src="assets/img/pencil.svg" alt="" /></button>
-                                <button title="Remove Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#deleteLocationModal"><img class=""
-                                        src="assets/img/trash.svg" alt="" /></button>
+                                    data-toggle="modal" data-target="#deleteLocationModal" (click)="remove(location)"><img class=""
+                                        src="assets/img/trash.svg" alt=""/></button>
                             </td>
                         </tr>
                     </tbody>
@@ -202,28 +142,33 @@
                 </button>
             </div>
             <div class="modal-body bg-light">
-                <form>
+                <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
                     <div class="mb-4">
-                        <input class="form-control" id="cardName" type="text" placeholder="Name" value="Abeokuta" />
+                        <label for="">Name</label>
+                        <input class="form-control" id="cardName" type="text" placeholder="Name" value="" formControlName="name"/>
+                        <small *ngIf="updateForm?.controls?.name?.touched && updateForm?.controls?.name?.errors" class="help-block text-danger">Please enter location name</small>
                     </div>
                     <div class="mb-4 d-flex row">
                         <div class="col-6">
-                            <input class="form-control" id="cardEmail" type="email" placeholder="Coordinate X"
-                                value="23" />
+                            <label for="">Coordinate X <small>(Min: 0, Max: 40)</small></label>
+                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate x" value="" formControlName="coordinate_x"/>
+                            <small *ngIf="updateForm?.controls?.coordinate_x?.touched && updateForm?.controls?.coordinate_x?.errors" class="help-block text-danger">Please enter a valid coordinate</small>
                         </div>
                         <div class="col-6">
-                            <input class="form-control" id="cardEmail" type="email" placeholder="Coordinate X"
-                                value="45" />
+                            <label for="">Coordinate Y <small>(Min: 0, Max: 40)</small></label>
+                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate y" value="" formControlName="coordinate_y"/>
+                            <small *ngIf="updateForm?.controls?.coordinate_y?.touched && updateForm?.controls?.coordinate_y?.errors" class="help-block text-danger">Please enter a valid coordinate</small>
                         </div>
                     </div>
                     <div class="mb-4">
-                        <input class="form-control" id="cardPassword" type="number" placeholder="Clearing Cost"
-                            value="99" />
+                        <label for="">Clearing Cost <small>(Min: $25, Max: $100)</small></label>
+                        <input class="form-control" id="cardName" type="number" placeholder="Clearing Cost" value="" formControlName="clearing_cost"/>
+                        <small *ngIf="updateForm?.controls?.clearing_cost?.touched && updateForm?.controls?.clearing_cost?.errors" class="help-block text-danger">Please enter a valid clearing cost</small>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!updateForm.valid" (click)="onUpdate()">Save</button>
             </div>
         </div>
     </div>
@@ -242,10 +187,10 @@
                 </button>
             </div>
             <div class="modal-body bg-light">
-                <p>You are about to delete Abeokuta, please note that this operation cannot be reversed</p>
+                <p>You are about to delete {{ selectedLocation.name }}, please note that this operation cannot be reversed</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="confirmRemoval()">Confirm</button>
             </div>
         </div>
     </div>
