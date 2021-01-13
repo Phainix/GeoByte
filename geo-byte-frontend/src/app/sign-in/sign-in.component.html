@@ -10,14 +10,16 @@
                 <div class="card hover-top-shadow hover-top-shadow-lg border-0 card-form">
                     <img class="card-img-top card-img-curve" src="assets/img/map.svg" alt="" />
                     <div class="card-body p-4 pt-5">
-                        <form>
+                        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
                             <div class="mb-4">
-                                <input class="form-control" id="cardEmail" type="email" placeholder="Email" />
+                                <input class="form-control" id="cardEmail" type="email" placeholder="Email" formControlName="email"/>
+                                <small *ngIf="signInForm?.controls?.email?.touched && signInForm?.controls?.email?.errors" class="help-block text-danger">Please enter a valid email</small>
                             </div>
                             <div class="mb-4">
-                                <input class="form-control" id="cardPassword" type="password" placeholder="Password" />
+                                <input class="form-control" id="cardPassword" type="password" placeholder="Password" formControlName="password"/>
+                                <small *ngIf="signInForm?.controls?.password?.touched && signInForm?.controls?.password?.errors" class="help-block text-danger">Password is required</small>
                             </div>
-                            <button class="btn btn-block btn-success text-white" type="submit">Sign In</button>
+                            <button class="btn btn-block btn-success text-white" type="submit" [disabled]="!signInForm.valid">Sign In</button>
                             <p class="text-center mt-3">Don't have an account? <a class="btn btn-link"
                                 [routerLink]="['/sign-up']">Sign Up</a></p>
                         </form>

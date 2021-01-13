@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { AppService } from '../app.service';
@@ -43,7 +42,7 @@ export class SignUpComponent implements OnInit {
                 }
                 this.app.error("User account could not be created, please try again");
             },
-            err => {
+            (err : any) => {
                 this.app.toggleLoader(false);
                 if(err.error && err.error.status == AppConstants.DUPLICATE_ENTITY) {
                     this.app.error("User account exists, please login");

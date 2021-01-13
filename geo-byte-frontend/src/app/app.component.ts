@@ -25,6 +25,18 @@ export class AppComponent {
         return this.app.loading;
     }
 
+    getAuthenticated() : any {
+        return this.app.authenticated;
+    }
+
+    getUser() : any {
+        return this.app.user;
+    }
+
+    getUserId() : any {
+        return this.app.userId;
+    }
+
     logout() {
         this.http.post('logout', {})
         .pipe(

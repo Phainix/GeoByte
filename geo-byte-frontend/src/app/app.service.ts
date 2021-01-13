@@ -11,29 +11,40 @@ export class AppService extends AppBaseService {
     alert = {};
     loading = false;
 
+    user : any = null;
+    userId : any = null;
+
     constructor(private http: HttpClient) {
         super();
     }
 
     authenticate(credentials : any, callback : any) {
 
-        const headers = new HttpHeaders(credentials ? {
-            authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
-        } : {});
+        // const headers = new HttpHeaders(credentials ? {
+        //     authorization: 'Basic ' + btoa(credentials.username + ':' + credentials.password)
+        // } : {});
 
-        this.http.get(`${this.baseURL}/user`, { headers: headers })
-        .pipe(
-            catchError(error => this.handleError(error))
-        )
-        .subscribe((response : any) => {
-            if (response['success']) {
-                this.authenticated = true;
-            } else {
-                this.authenticated = false;
-            }
-            return callback && callback();
-        });
+        // this.http.get(`${this.baseURL}/user`, { headers: headers })
+        // .pipe(
+        //     catchError(error => this.handleError(error))
+        // )
+        // .subscribe((response : any) => {
+        //     if (response['success']) {
+        //         this.authenticated = true;
+        //     } else {
+        //         this.authenticated = false;
+        //     }
+        //     return callback && callback();
+        // });
 
+        this.user = localStorage.getItem("user");
+        this.userId = localStorage.getItem("userId");
+
+        if(this.user && this.userId) {
+            this.authenticated = true;
+        } else {
+            this.authenticated = false;
+        }
     }
 
     notify(message : string) {
