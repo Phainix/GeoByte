@@ -12,3 +12,4 @@ The frontend app is in the geo-byte-frontend folder, run the command below to st
 ```bash
 ng serve
 ```
+Visit http://localhost:4200/ in your browser to view the app
