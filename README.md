@@ -1,13 +1,13 @@
 # GeoByte
 GeoByte Assessment (Byteworks)
 
-##Spring Backend
+## Spring Backend
 The api is in the API folder, run the command below to start the app locally
 ```bash
 mvn spring-boot:run
 ```
 
-##Angular Frontend
+## Angular Frontend
 The frontend app is in the geo-byte-frontend folder, run the command below to start the app locally
 ```bash
 ng serve
