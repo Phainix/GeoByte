@@ -1,0 +1,16 @@
+{
+    "name": "",
+    "icons": [
+        {
+            "src": "/logo.svg",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/logo.svg",
+            "sizes": "512x512"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}
