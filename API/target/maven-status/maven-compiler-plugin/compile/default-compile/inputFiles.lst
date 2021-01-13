@@ -13,6 +13,7 @@
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/config/GeoByteConfiguration.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/dto/model/LocationDto.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/dto/response/Status.java
+/Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/config/WebConfig.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/controller/v1/request/LocationRequest.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/exception/ExceptionType.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/dto/response/UserResponseDto.java
@@ -31,6 +32,7 @@
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/dto/response/ResponseError.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/controller/v1/request/UserSigninRequest.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/model/OptimalRoutePath.java
+/Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/model/OptimalRouteResponsePath.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/dto/mapper/UserMapper.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/dto/mapper/LocationMapper.java
 /Users/phainix/Development/GeoByte/API/src/main/java/co/phainix/geobyte/repository/LocationRepository.java
