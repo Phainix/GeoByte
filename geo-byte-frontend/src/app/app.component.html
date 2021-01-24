@@ -3,26 +3,26 @@
 <!-- ===============================================-->
 <main class="main" [ngClass]="{'loading': getLoading()}">
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-4 pl-0">
-        <div class="container"><a class="navbar-brand text-primary font-weight-bold" [routerLink]="['/']"> GeoByte.
+        <div class="container"><a class="navbar-brand text-primary font-weight-bold" [routerLink]="['/']"> OptiRoute.
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li *ngIf="getAuthenticated()" class="nav-item text-muted">
+                    <li class="nav-item text-muted">
                         <a class="nav-link active" aria-current="page" [routerLink]="['/locations']">View Locations</a>
                     </li>
-                    <li *ngIf="getAuthenticated()" class="nav-item"><a class="nav-link" [routerLink]="['/route']">Get Optimal Route</a></li>
+                    <li class="nav-item"><a class="nav-link" [routerLink]="['/route']">Get Optimal Route</a></li>
                 </ul>
-                <a *ngIf="!getAuthenticated()" class="btn btn-primary ml-auto hover-top-shadow" [routerLink]="['/sign-in']">Sign In / Sign
+                <!-- <a *ngIf="!getAuthenticated()" class="btn btn-primary ml-auto hover-top-shadow" [routerLink]="['/sign-in']">Sign In / Sign
                     Up</a>
-                <a *ngIf="getAuthenticated()" class="btn btn-primary ml-auto hover-top-shadow">Hi, {{ getUser() }}</a>
+                <a *ngIf="getAuthenticated()" class="btn btn-primary ml-auto hover-top-shadow">Hi, {{ getUser() }}</a> -->
             </div>
         </div>
     </nav>
 
-    <section class="">
+    <section *ngIf="getAlert()?.type == 'danger' || getAlert()?.type == 'success' || getAlert()?.type == 'info'" class="">
         <div class="container">
             <div class="alert alert-{{ getAlert()?.type }}" role="alert">
                 {{ getAlert()?.message }}
@@ -34,17 +34,11 @@
 
     <section class="py-7">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-between">
                 <div class="col-md-4 col-lg-3">
-                    <h4 class="text-primary font-weight-bold">GeoByte.</h4>
+                    <h4 class="text-primary font-weight-bold">OptiRoute.</h4>
                     <p class="mb-2 text-muted">Where speed connects <br> with efficiency.</p>
 
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                </div>
-                <div class="col-6 col-md-4 col-lg-2">
-                </div>
-                <div class="col-6 col-md-4 offset-md-4 col-lg-2 offset-lg-0">
                 </div>
                 <div class="col-6 col-md-4 col-lg-3">
                     <h6 class="footer-title">Features</h6>

@@ -14127,6 +14127,7 @@ a.text-500:hover {
 .map .pin {
   display: inline-flex;
   position: absolute;
+  cursor: pointer;
 }
 .map .pin-img {
   width: 3rem;
