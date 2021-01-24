@@ -16,7 +16,7 @@ import { RouteService } from './route.service';
 })
 export class RouteComponent implements OnInit {
 
-    locations : Array<Object> = [];
+    locations : any = [];
 
     optimalRoute : any = {};
 

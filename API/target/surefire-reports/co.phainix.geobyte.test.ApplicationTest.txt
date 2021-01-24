@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: co.phainix.geobyte.test.ApplicationTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.795 s - in co.phainix.geobyte.test.ApplicationTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.049 s <<< FAILURE! - in co.phainix.geobyte.test.ApplicationTest
+contextLoads  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalArgumentException: Invalid source 'classpath*:/spring/applicationContext*.xml'
+

@@ -14118,3 +14118,44 @@ a.text-500:hover {
 .worstRoute {
   transform: scale(.7);
 }
+.map-img {
+  width: 100%;
+}
+.map {
+  position: relative;
+}
+.map .pin {
+  display: inline-flex;
+  position: absolute;
+}
+.map .pin-img {
+  width: 3rem;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+}
+.map .coord-x, .map .coord-y {
+  display: none;
+}
+.map .pin-desc {
+  font-size: 60%;
+  font-weight: 700;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  position: absolute;
+  left: 2.5rem;
+  top: 2rem;
+  /* right: -11rem; */
+  width: 6rem;
+}
+.map .pin:hover .pin-img {
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-name: bounce;
+  animation-timing-function: ease-in-out;
+}
+@keyframes bounce {
+  0%   { transform: scale(1,1)      translateY(0); }
+  50%  { transform: scale(1.05,.95) translateY(-10px); }
+  100% { transform: scale(1,1)      translateY(0); }
+}

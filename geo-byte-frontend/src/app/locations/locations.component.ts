@@ -16,7 +16,7 @@ import { LocationsService } from './locations.service';
 })
 export class LocationsComponent implements OnInit {
 
-    locations = [];
+    locations : any = [];
 
     selectedLocation : any = {};
 

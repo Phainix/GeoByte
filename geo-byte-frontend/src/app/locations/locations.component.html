@@ -2,6 +2,54 @@
 <!-- <section> begin ============================-->
 <section>
 
+    <div class="container bg-light">
+        <div class="text-center my-5 d-flex">
+            <h2>Map</h2>
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="col-12 text-center">
+                <div class="map">
+                    <img src="assets/img/Map4.svg" alt="" class="map-img">
+                    <div *ngFor="let location of locations; index as i;" class="pin" [style.left]="'calc((' + location?.coordinate_x + ' / 40) * 100%)'" [style.top]="'calc((' + location?.coordinate_y + ' / 40) * 100%)'">
+                        <img class="pin-img" src="assets/img/location_map_pointer.svg" alt="">
+                        <span class="pin-desc">
+                            <span class="name">{{ location?.name }}: ${{ location?.clearing_cost }}</span>
+                            <span class="coord-x">{{ location?.coordinate_x }}</span>
+                            <span class="coord-y">{{ location?.coordinate_y }}</span>
+                            <span class="c_cost"></span>
+                        </span>
+                    </div>
+                    <!-- <div class="pin" style="left: calc((32 / 40) * 100%); top: calc((24 / 40) * 100%);">
+                        <img class="pin-img" src="assets/img/location_map_pointer.svg" alt="">
+                        <span class="pin-desc">
+                            <span class="name">Tokyo</span>
+                            <span class="coord-x">32</span>
+                            <span class="coord-y">24</span>
+                            <span class="c_cost">Clearing Cost: $56</span>
+                        </span>
+                    </div>
+                    <div class="pin" style="left: calc((9 / 40) * 100%); top: calc((3 / 40) * 100%);">
+                        <img class="pin-img" src="assets/img/location_map_pointer.svg" alt="">
+                        <span class="pin-desc">
+                            <span class="name">Somolu</span>
+                            <span class="coord-x">9</span>
+                            <span class="coord-y">3</span>
+                            <span class="c_cost">Clearing Cost: $20</span>
+                        </span>
+                    </div>
+                    <div class="pin" style="left: calc((16 / 40) * 100%); top: calc((16 / 40) * 100%);">
+                        <img class="pin-img" src="assets/img/location_map_pointer.svg" alt="">
+                        <span class="pin-desc">
+                            <span class="name">Epe</span>
+                            <span class="coord-x">16</span>
+                            <span class="coord-y">16</span>
+                            <span class="c_cost">Clearing Cost: $78</span>
+                        </span>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="text-center my-5 d-flex">
             <h2>All Locations</h2>
@@ -30,12 +78,17 @@
                             <td>${{ location?.clearing_cost }}</td>
                             <td>
                                 <button title="Update Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#updateLocationModal" (click)="update(location)"><img class=""
-                                        src="assets/img/pencil.svg" alt="" /></button>
+                                    data-toggle="modal" data-target="#updateLocationModal"
+                                    (click)="update(location)"><img class="" src="assets/img/pencil.svg"
+                                        alt="" /></button>
                                 <button title="Remove Location" class="btn btn-success text-white py-1" type="button"
-                                    data-toggle="modal" data-target="#deleteLocationModal" (click)="remove(location)"><img class=""
-                                        src="assets/img/trash.svg" alt=""/></button>
+                                    data-toggle="modal" data-target="#deleteLocationModal"
+                                    (click)="remove(location)"><img class="" src="assets/img/trash.svg"
+                                        alt="" /></button>
                             </td>
+                        </tr>
+                        <tr *ngIf="locations.length == 0">
+                            <td colspan="6">No locations found, please add a location</td>
                         </tr>
                     </tbody>
                 </table>
@@ -108,30 +161,42 @@
                 <form [formGroup]="addForm" (ngSubmit)="onAdd()">
                     <div class="mb-4">
                         <label for="">Name</label>
-                        <input class="form-control" id="cardName" type="text" placeholder="Name" value="" formControlName="name"/>
-                        <small *ngIf="addForm?.controls?.name?.touched && addForm?.controls?.name?.errors" class="help-block text-danger">Please enter location name</small>
+                        <input class="form-control" id="cardName" type="text" placeholder="Name" value=""
+                            formControlName="name" />
+                        <small *ngIf="addForm?.controls?.name?.touched && addForm?.controls?.name?.errors"
+                            class="help-block text-danger">Please enter location name</small>
                     </div>
                     <div class="mb-4 d-flex row">
                         <div class="col-6">
                             <label for="">Coordinate X <small>(Min: 0, Max: 40)</small></label>
-                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate x" value="" formControlName="coordinate_x"/>
-                            <small *ngIf="addForm?.controls?.coordinate_x?.touched && addForm?.controls?.coordinate_x?.errors" class="help-block text-danger">Please enter a valid coordinate</small>
+                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate x" value=""
+                                formControlName="coordinate_x" />
+                            <small
+                                *ngIf="addForm?.controls?.coordinate_x?.touched && addForm?.controls?.coordinate_x?.errors"
+                                class="help-block text-danger">Please enter a valid coordinate</small>
                         </div>
                         <div class="col-6">
                             <label for="">Coordinate Y <small>(Min: 0, Max: 40)</small></label>
-                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate y" value="" formControlName="coordinate_y"/>
-                            <small *ngIf="addForm?.controls?.coordinate_y?.touched && addForm?.controls?.coordinate_y?.errors" class="help-block text-danger">Please enter a valid coordinate</small>
+                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate y" value=""
+                                formControlName="coordinate_y" />
+                            <small
+                                *ngIf="addForm?.controls?.coordinate_y?.touched && addForm?.controls?.coordinate_y?.errors"
+                                class="help-block text-danger">Please enter a valid coordinate</small>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="">Clearing Cost <small>(Min: $25, Max: $100)</small></label>
-                        <input class="form-control" id="cardName" type="number" placeholder="Clearing Cost" value="" formControlName="clearing_cost"/>
-                        <small *ngIf="addForm?.controls?.clearing_cost?.touched && addForm?.controls?.clearing_cost?.errors" class="help-block text-danger">Please enter a valid clearing cost</small>
+                        <input class="form-control" id="cardName" type="number" placeholder="Clearing Cost" value=""
+                            formControlName="clearing_cost" />
+                        <small
+                            *ngIf="addForm?.controls?.clearing_cost?.touched && addForm?.controls?.clearing_cost?.errors"
+                            class="help-block text-danger">Please enter a valid clearing cost</small>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!addForm.valid" (click)="onAdd()">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!addForm.valid"
+                    (click)="onAdd()">Save</button>
             </div>
         </div>
     </div>
@@ -153,30 +218,42 @@
                 <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
                     <div class="mb-4">
                         <label for="">Name</label>
-                        <input class="form-control" id="cardName" type="text" placeholder="Name" value="" formControlName="name"/>
-                        <small *ngIf="updateForm?.controls?.name?.touched && updateForm?.controls?.name?.errors" class="help-block text-danger">Please enter location name</small>
+                        <input class="form-control" id="cardName" type="text" placeholder="Name" value=""
+                            formControlName="name" />
+                        <small *ngIf="updateForm?.controls?.name?.touched && updateForm?.controls?.name?.errors"
+                            class="help-block text-danger">Please enter location name</small>
                     </div>
                     <div class="mb-4 d-flex row">
                         <div class="col-6">
                             <label for="">Coordinate X <small>(Min: 0, Max: 40)</small></label>
-                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate x" value="" formControlName="coordinate_x"/>
-                            <small *ngIf="updateForm?.controls?.coordinate_x?.touched && updateForm?.controls?.coordinate_x?.errors" class="help-block text-danger">Please enter a valid coordinate</small>
+                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate x" value=""
+                                formControlName="coordinate_x" />
+                            <small
+                                *ngIf="updateForm?.controls?.coordinate_x?.touched && updateForm?.controls?.coordinate_x?.errors"
+                                class="help-block text-danger">Please enter a valid coordinate</small>
                         </div>
                         <div class="col-6">
                             <label for="">Coordinate Y <small>(Min: 0, Max: 40)</small></label>
-                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate y" value="" formControlName="coordinate_y"/>
-                            <small *ngIf="updateForm?.controls?.coordinate_y?.touched && updateForm?.controls?.coordinate_y?.errors" class="help-block text-danger">Please enter a valid coordinate</small>
+                            <input class="form-control" id="cardName" type="number" placeholder="Coordinate y" value=""
+                                formControlName="coordinate_y" />
+                            <small
+                                *ngIf="updateForm?.controls?.coordinate_y?.touched && updateForm?.controls?.coordinate_y?.errors"
+                                class="help-block text-danger">Please enter a valid coordinate</small>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="">Clearing Cost <small>(Min: $25, Max: $100)</small></label>
-                        <input class="form-control" id="cardName" type="number" placeholder="Clearing Cost" value="" formControlName="clearing_cost"/>
-                        <small *ngIf="updateForm?.controls?.clearing_cost?.touched && updateForm?.controls?.clearing_cost?.errors" class="help-block text-danger">Please enter a valid clearing cost</small>
+                        <input class="form-control" id="cardName" type="number" placeholder="Clearing Cost" value=""
+                            formControlName="clearing_cost" />
+                        <small
+                            *ngIf="updateForm?.controls?.clearing_cost?.touched && updateForm?.controls?.clearing_cost?.errors"
+                            class="help-block text-danger">Please enter a valid clearing cost</small>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!updateForm.valid" (click)="onUpdate()">Save</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" [disabled]="!updateForm.valid"
+                    (click)="onUpdate()">Save</button>
             </div>
         </div>
     </div>
@@ -195,10 +272,12 @@
                 </button>
             </div>
             <div class="modal-body bg-light">
-                <p>You are about to delete {{ selectedLocation.name }}, please note that this operation cannot be reversed</p>
+                <p>You are about to delete {{ selectedLocation.name }}, please note that this operation cannot be
+                    reversed</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="confirmRemoval()">Confirm</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="confirmRemoval()">Confirm</button>
             </div>
         </div>
     </div>
