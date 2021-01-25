@@ -20,6 +20,8 @@ export class LocationsComponent implements OnInit {
 
     selectedLocation : any = {};
 
+    newLocation : any = {};
+
     updateForm = this.fb.group({
         name: ['', Validators.required],
         coordinate_x: ['', [Validators.required, Validators.min(0), Validators.max(40),  Validators.pattern('\\d+')]],
@@ -39,6 +41,7 @@ export class LocationsComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAll();
+        this.app.setActive('locations');
     }
 
     getAll(): void {
@@ -121,6 +124,28 @@ export class LocationsComponent implements OnInit {
             }
         );
         this.addForm.reset();
+    }
+
+    getMapCoordAndAddLocation(e: any) {
+        let rect = e.target.getBoundingClientRect();
+        let xPos = e.clientX - rect.left; //x position within the element.
+        let yPos = e.clientY - rect.top;  //y position within the element.
+        
+        let xCoord = Math.floor((xPos / e.target.clientWidth) * 40);
+        let yCoord = Math.floor((yPos / e.target.clientHeight) * 40);
+        
+        this.newLocation.coordinate_x = xCoord;
+        this.newLocation.coordinate_y = yCoord;
+    }
+
+    add(location : any) {
+        this.addForm.setValue({
+            'coordinate_x': location.coordinate_x ? location.coordinate_x : '', 
+            'coordinate_y': location.coordinate_y ? location.coordinate_y : '', 
+            'name': '', 
+            'clearing_cost': ''
+        });
+        this.newLocation = {};
     }
 
 }

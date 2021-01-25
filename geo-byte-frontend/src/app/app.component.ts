@@ -41,6 +41,14 @@ export class AppComponent implements OnInit {
         return this.app.userId;
     }
 
+    getActivePage() : any {
+        return this.app.active;
+    }
+
+    isActivePage(active : any) : boolean {
+        return this.app.active === active;
+    }
+
     logout() {
         this.http.post('logout', {})
         .pipe(

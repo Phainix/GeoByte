@@ -5,11 +5,13 @@ public class OptimalRouteResponsePath {
     public double km;
     public double clearing_cost;
     public int location_id;
+    public double total_cost;
 
-    public OptimalRouteResponsePath(double km, double clearing_cost, int location_id) {
+    public OptimalRouteResponsePath(double km, double clearing_cost, int location_id, double total_cost) {
         this.km = km;
         this.clearing_cost = clearing_cost;
         this.location_id = location_id;
+        this.total_cost = total_cost;
     }
 
     public double getKm() {

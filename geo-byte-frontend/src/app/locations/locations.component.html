@@ -7,10 +7,11 @@
             <h2>Map</h2>
         </div>
         <div class="row align-items-center justify-content-center">
-            <div class="col-12 text-center">
+            <div class="col-12 text-center pb-3">
                 <div class="map">
-                    <img src="assets/img/Map4.svg" alt="" class="map-img">
-                    <div *ngFor="let location of locations; index as i;" class="pin" [style.left]="'calc((' + location?.coordinate_x + ' / 40) * 100%)'" [style.top]="'calc((' + location?.coordinate_y + ' / 40) * 100%)'">
+                    <img src="assets/img/Map4.svg" alt="" class="map-img" (click)="getMapCoordAndAddLocation($event)">
+                    <div *ngFor="let location of locations; index as i;" class="pin" [style.left]="'calc((' + location?.coordinate_x + ' / 40) * 100%)'" [style.top]="'calc((' + location?.coordinate_y + ' / 40) * 100%)'" data-toggle="modal" data-target="#updateLocationModal"
+                    (click)="update(location)">
                         <img class="pin-img" src="assets/img/location_map_pointer.svg" alt="">
                         <span class="pin-desc">
                             <span class="name">{{ location?.name }}: ${{ location?.clearing_cost }}</span>
@@ -19,34 +20,16 @@
                             <span class="c_cost"></span>
                         </span>
                     </div>
-                    <!-- <div class="pin" style="left: calc((32 / 40) * 100%); top: calc((24 / 40) * 100%);">
-                        <img class="pin-img" src="assets/img/location_map_pointer.svg" alt="">
-                        <span class="pin-desc">
-                            <span class="name">Tokyo</span>
-                            <span class="coord-x">32</span>
-                            <span class="coord-y">24</span>
-                            <span class="c_cost">Clearing Cost: $56</span>
+
+                    <div class="pin" [style.left]="'calc((' + newLocation?.coordinate_x + ' / 40) * 100%)'" [style.top]="'calc((' + newLocation?.coordinate_y + ' / 40) * 100%)'" data-toggle="modal" data-target="#addLocationModal" *ngIf="newLocation?.coordinate_x && newLocation?.coordinate_y"
+                    (click)="add(newLocation)">
+                        <span class="selected-pin-desc btn btn-sm btn-primary">
+                            <span>Add a location at coordinate </span>
+                            <span>({{ newLocation.coordinate_x }}, {{ newLocation.coordinate_y }})</span>
                         </span>
                     </div>
-                    <div class="pin" style="left: calc((9 / 40) * 100%); top: calc((3 / 40) * 100%);">
-                        <img class="pin-img" src="assets/img/location_map_pointer.svg" alt="">
-                        <span class="pin-desc">
-                            <span class="name">Somolu</span>
-                            <span class="coord-x">9</span>
-                            <span class="coord-y">3</span>
-                            <span class="c_cost">Clearing Cost: $20</span>
-                        </span>
-                    </div>
-                    <div class="pin" style="left: calc((16 / 40) * 100%); top: calc((16 / 40) * 100%);">
-                        <img class="pin-img" src="assets/img/location_map_pointer.svg" alt="">
-                        <span class="pin-desc">
-                            <span class="name">Epe</span>
-                            <span class="coord-x">16</span>
-                            <span class="coord-y">16</span>
-                            <span class="c_cost">Clearing Cost: $78</span>
-                        </span>
-                    </div> -->
                 </div>
+                <small class="text-success">Click any where on the map to add a new location</small>
             </div>
         </div>
     </div>
@@ -54,7 +37,7 @@
         <div class="text-center my-5 d-flex">
             <h2>All Locations</h2>
             <button class="btn btn-primary ml-auto hover-top-shadow" href="" type="button" data-toggle="modal"
-                data-target="#addLocationModal">Add a location</button>
+                data-target="#addLocationModal" (click)="add({})">Add a location</button>
         </div>
         <div class="row align-items-center justify-content-center">
             <div class="col-12 text-center table-responsive">

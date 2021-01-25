@@ -105,8 +105,8 @@
                                                 <div class="info">{{ i == 0 ? 'Package departs origin location' : (i == optimalRoute?.paths?.length - 1 ? 'Package arrives destination location' : 'Package arrives and after clearance it departs') }}</div>
                                                 <div class="type">{{ i == 0 ? 'Origin' : (i == optimalRoute?.paths?.length - 1 ? 'Destination' : 'Stop') }}</div>
                                             </div> 
-                                                <!-- <span class="number"><span>{{ path.km }}km</span>
-                                                <span>${{ path.clearing_cost }}</span></span> -->
+                                                <span class="number"><span>{{ path.km }}km</span>
+                                                <span>${{ path.total_cost }}</span></span>
                                         </li>
                                     </ul>
                                 </div>
@@ -118,7 +118,7 @@
                         <!-- Badge -->
                         <div class="route-badge bg-success text-uppercase">Recommended</div>
                     </div>
-                    <div class="col-md-6 position-relative worstRoute" *ngIf="routeLoaded && worstRoute">
+                    <div class="col-md-6 position-relative worstRoute">
                         <div class="card rounded-lg shadow-lg border-0 overflow-hidden" >
                             <div class="card-body px-4 px-sm-7 px-md-4 px-xl-7 py-6 py-md-5 py-lg-6">
                                 <div class="text-center mb-5"><span
@@ -169,8 +169,8 @@
                                                 <div class="info">{{ i == 0 ? 'Package departs origin location' : (i == worstRoute?.paths?.length - 1 ? 'Package arrives destination location' : 'Package arrives and after clearance it departs') }}</div>
                                                 <div class="type">{{ i == 0 ? 'Origin' : (i == worstRoute?.paths?.length - 1 ? 'Destination' : 'Stop') }}</div>
                                             </div> 
-                                                <!-- <span class="number"><span>{{ path.km }}km</span>
-                                                <span>${{ path.clearing_cost }}</span></span> -->
+                                                <span class="number"><span>{{ path.km }}km</span>
+                                                <span>${{ path.total_cost }}</span></span>
                                         </li>
                                     </ul>
                                 </div>

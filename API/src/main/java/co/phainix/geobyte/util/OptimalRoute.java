@@ -12,7 +12,7 @@ public class OptimalRoute {
     public int destination;
 
     public int minStop = 1;
-    public int maxStop = 4;
+    public int maxStop = 3;
 
     public double maxKm;
     public double maxCost;
@@ -115,7 +115,7 @@ public class OptimalRoute {
             OptimalRouteResponsePath[] paths = new OptimalRouteResponsePath[entry.getValue().length + 2];
 
             // paths[0] = locations.get(indexLocationMap.get(origin));
-             paths[0] = new OptimalRouteResponsePath(0, 0, origin);
+             paths[0] = new OptimalRouteResponsePath(0, 0, origin, 0);
 
             int originIndex = indexLocationMap.get(origin);
             OptimalRouteLocation originLocation = locations.get(originIndex);
@@ -138,7 +138,7 @@ public class OptimalRoute {
                     km += distances[originIndex][currentLocationIndex];
                     clearingCost += currentLocation.getClearing_cost();
 
-                    paths[i + 1] = new OptimalRouteResponsePath(km, clearingCost, path[i]);
+                    paths[i + 1] = new OptimalRouteResponsePath(km, clearingCost, path[i], (costPerKm * km) + clearingCost);
                 } else { // This is a middle location
                     int prevLocationIndex = indexLocationMap.get(path[i-1]);
                     OptimalRouteLocation prevLocation = locations.get(prevLocationIndex);
@@ -146,7 +146,7 @@ public class OptimalRoute {
                     km += distances[prevLocationIndex][currentLocationIndex];
                     clearingCost += currentLocation.getClearing_cost();
 
-                    paths[i + 1] = new OptimalRouteResponsePath(km, clearingCost, path[i]);
+                    paths[i + 1] = new OptimalRouteResponsePath(km, clearingCost, path[i], (costPerKm * km) + clearingCost);
                 }
 
                 if(i == path.length - 1) { // This is the last location, calculate distance in km from here to destination
@@ -157,7 +157,7 @@ public class OptimalRoute {
             }
 
             // paths[entry.getValue().length + 1] = locations.get(indexLocationMap.get(destination));
-             paths[entry.getValue().length + 1] = new OptimalRouteResponsePath(km, clearingCost, destination);
+            paths[entry.getValue().length + 1] = new OptimalRouteResponsePath(km, clearingCost, destination, (costPerKm * km) + clearingCost);
 
             km = Math.round(km * 100) / 100.00;
 

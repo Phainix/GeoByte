@@ -14,6 +14,8 @@ export class AppService extends AppBaseService {
     user : any = null;
     userId : any = null;
 
+    active : any = null;
+
     constructor(private http: HttpClient) {
         super();
     }
@@ -71,6 +73,10 @@ export class AppService extends AppBaseService {
 
     toggleLoader(status : boolean) {
         this.loading = status
+    }
+
+    setActive(active : any) {
+        this.active = active;
     }
 
 }

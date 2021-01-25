@@ -34,6 +34,7 @@ export class RouteComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAll();
+        this.app.setActive('route');
     }
 
     getAll(): void {
